@@ -81,18 +81,37 @@
         </nav>
       </section>
       <section id="park-header">
-        <a href="#">
-          <span>Info</span>
-          <svg class="icon" role="presentation" focusable="false">
-            <use xlink:href="/images/sprite.symbol.svg#info"></use>
-          </svg>
-        </a>
-        <svg class="icon" role="presentation" focusable="false">
-          <use xlink:href="/images/sprite.symbol.svg#alert"></use>
-        </svg>
-      </section>
-    </header>
-    <main id="main"></main>
-    <footer id="park-footer"></footer>
-  </body>
-</html>
+  <div class="hero-banner">
+    <img
+      class="hero-banner__image"
+      src="https://www.nps.gov/common/uploads/structured_data/3C7D5920-1DD8-B71B-0B83F012ED802CEA.jpg"
+      alt="Yellowstone National Park landscape"
+    />
+
+    <div class="hero-banner__content">
+      <div class="hero-banner__info">
+        <a href="/" class="hero-banner__title">Yellowstone</a>
+        <p class="hero-banner__subtitle">
+          <span>National Park</span>
+          <span>ID, MT, WY</span>
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <nav id="local-nav" class="park-nav" aria-label="Park navigation">
+    <a href="#">
+      <span>Info</span>
+      <svg class="icon" role="presentation" focusable="false">
+        <use xlink:href="/images/sprite.symbol.svg#info"></use>
+      </svg>
+    </a>
+
+    <a href="#">
+      <span>Alerts</span>
+      <svg class="icon" role="presentation" focusable="false">
+        <use xlink:href="/images/sprite.symbol.svg#alert"></use>
+      </svg>
+    </a>
+  </nav>
+</section>
