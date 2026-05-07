@@ -1,8 +1,5 @@
-import { getParkData, parkInfoLinks } from "./parkService.mjs";
-import setHeaderFooter from "./setHeaderFooter.mjs";
+import { getParkData, getInfoLinks } from "./parkService.mjs";
 import { mediaCardTemplate } from "./templates.mjs";
-
-const parkData = getParkData();
 
 function setHeaderInfo(data) {
   const disclaimerLink = document.querySelector(".disclaimer > a");
@@ -80,7 +77,14 @@ function setFooter(data) {
   footer.innerHTML = footerTemplate(data);
 }
 
-setHeaderInfo(parkData);
-setParkIntro(parkData);
-setParkInfoLinks(parkInfoLinks);
-setFooter(parkData);
+async function init() {
+  const parkData = await getParkData();
+  const parkInfoLinks = getInfoLinks(parkData.images);
+
+  setHeaderInfo(parkData);
+  setParkIntro(parkData);
+  setParkInfoLinks(parkInfoLinks);
+  setFooter(parkData);
+}
+
+init();
