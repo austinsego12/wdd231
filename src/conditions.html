@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Current Conditions</title>
+  <script type="module" src="./js/conditions.js"></script>
+</head>
+
+<body>
+  <header id="main-header"></header>
+
+  <main>
+    <section class="conditions-hero">
+      <h1>Current Conditions</h1>
+      <p>Check alerts, visitor services, and available activities before planning your visit.</p>
+    </section>
+
+    <section id="alerts-section" class="conditions-section">
+      <h2>Alerts</h2>
+      <ul id="alerts-list" class="alerts-list">
+        <li>Loading alerts...</li>
+      </ul>
+    </section>
+
+    <section id="visitor-services-section" class="conditions-section">
+      <details name="conditions">
+        <summary>Visitor Services</summary>
+        <div id="visitor-centers-list" class="details-content">
+          <p>Loading visitor services...</p>
+        </div>
+      </details>
+    </section>
+
+    <section id="activities-section" class="conditions-section">
+      <details name="conditions">
+        <summary>Activities</summary>
+        <div id="activities-list" class="details-content">
+          <p>Loading activities...</p>
+        </div>
+      </details>
+    </section>
+  </main>
+
+  <footer id="main-footer"></footer>
+</body>
+</html>
