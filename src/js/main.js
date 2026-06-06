@@ -77,6 +77,30 @@ function setFooter(data) {
   footer.innerHTML = footerTemplate(data);
 }
 
+function enableNavigation() {
+  const menuButton = document.querySelector("#global-nav-toggle");
+  const globalNav = document.querySelector(".global-nav");
+
+  if (!menuButton || !globalNav) {
+    return;
+  }
+
+  menuButton.addEventListener("click", (ev) => {
+    let target = ev.target;
+
+    if (target.tagName !== "BUTTON") {
+      target = target.closest("button");
+    }
+
+    globalNav.classList.toggle("show");
+
+    const isOpen = globalNav.classList.contains("show");
+
+    target.setAttribute("aria-expanded", isOpen);
+    target.setAttribute("aria-label", isOpen ? "Close Menu" : "Open Menu");
+  });
+}
+
 async function init() {
   const parkData = await getParkData();
   const parkInfoLinks = getInfoLinks(parkData.images);
@@ -85,6 +109,7 @@ async function init() {
   setParkIntro(parkData);
   setParkInfoLinks(parkInfoLinks);
   setFooter(parkData);
+  enableNavigation();
 }
 
 init();

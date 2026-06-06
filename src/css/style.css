@@ -211,7 +211,42 @@ a:hover {
 }
 
 .global-nav {
+  background-color: var(--bs-black);
+  color: var(--bs-white);
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  z-index: 10;
+}
+
+.global-nav.show {
+  max-height: 1000px;
+}
+
+.global-nav__toggle--closed,
+.global-nav__toggle--open {
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.global-nav__toggle--closed {
+  display: flex;
+}
+
+.global-nav__toggle--open {
   display: none;
+}
+
+.global-nav__toggle[aria-expanded="true"] > .global-nav__toggle--closed {
+  display: none;
+}
+
+.global-nav__toggle[aria-expanded="true"] > .global-nav__toggle--open {
+  display: flex;
 }
 
 /* Park header and hero image */
@@ -503,6 +538,17 @@ summary {
 /* Larger screen styling */
 
 @media screen and (min-width: 700px) {
+  .global-nav {
+    max-height: none;
+    overflow: visible;
+    position: static;
+    width: auto;
+  }
+
+  .global-nav__toggle {
+    display: none;
+  }
+
   .hero-banner {
     min-height: 400px;
   }
