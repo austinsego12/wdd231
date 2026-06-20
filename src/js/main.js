@@ -78,9 +78,6 @@ function setFooter(data) {
   footer.innerHTML = footerTemplate(data);
 }
 
-  if (!menuButton || !globalNav) {
-    return;
-  }
 
   menuButton.addEventListener("click", (ev) => {
     let target = ev.target;
