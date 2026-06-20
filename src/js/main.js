@@ -77,10 +77,6 @@ function setFooter(data) {
   footer.innerHTML = footerTemplate(data);
 }
 
-function enableNavigation() {
-  const menuButton = document.querySelector("#global-nav-toggle");
-  const globalNav = document.querySelector(".global-nav");
-
   if (!menuButton || !globalNav) {
     return;
   }
@@ -99,7 +95,6 @@ function enableNavigation() {
     target.setAttribute("aria-expanded", isOpen);
     target.setAttribute("aria-label", isOpen ? "Close Menu" : "Open Menu");
   });
-}
 
 async function init() {
   const parkData = await getParkData();
@@ -109,7 +104,6 @@ async function init() {
   setParkIntro(parkData);
   setParkInfoLinks(parkInfoLinks);
   setFooter(parkData);
-  enableNavigation();
 }
 
 init();
