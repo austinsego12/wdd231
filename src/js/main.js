@@ -1,5 +1,6 @@
 import { getParkData, getInfoLinks } from "./parkService.mjs";
 import { mediaCardTemplate } from "./templates.mjs";
+import setHeaderFooter from "./setHeaderFooter.mjs";
 
 function setHeaderInfo(data) {
   const disclaimerLink = document.querySelector(".disclaimer > a");
