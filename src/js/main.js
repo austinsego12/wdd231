@@ -20,13 +20,18 @@ function setParkInfoLinks(data) {
 }
 
 async function init() {
-  const parkData = await getParkData();
-  const parkInfoLinks = getInfoLinks(parkData.images);
-
-  setHeaderFooter(parkData);
-  setParkIntro(parkData);
-  setParkInfoLinks(parkInfoLinks);
   enableNavigation();
+
+  try {
+    const parkData = await getParkData();
+    const parkInfoLinks = getInfoLinks(parkData.images);
+
+    setHeaderFooter(parkData);
+    setParkIntro(parkData);
+    setParkInfoLinks(parkInfoLinks);
+  } catch (error) {
+    console.error("Park data could not be loaded:", error);
+  }
 }
 
 init();
