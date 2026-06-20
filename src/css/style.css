@@ -170,12 +170,13 @@ a:hover {
   overflow: hidden;
 }
 
-/* Global header */
+/* Global header and navigation */
 
 .global-header {
   background-color: var(--bs-black);
   color: var(--bs-white);
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
   padding: 0.35rem 0.75rem;
@@ -216,15 +217,12 @@ a:hover {
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.4s ease;
-  position: absolute;
-  top: 100%;
-  left: 0;
   width: 100%;
-  z-index: 10;
+  flex-basis: 100%;
 }
 
 .global-nav.show {
-  max-height: 1000px;
+  max-height: 1500px;
 }
 
 .global-nav__toggle--closed,
@@ -247,6 +245,100 @@ a:hover {
 
 .global-nav__toggle[aria-expanded="true"] > .global-nav__toggle--open {
   display: flex;
+}
+
+.global-nav__section-heading {
+  color: var(--bs-chathams-blue-3);
+  font-size: 1rem;
+  margin: 0;
+  padding: 1rem;
+  text-transform: uppercase;
+}
+
+.global-nav__section-heading--green {
+  color: var(--bs-light-green);
+}
+
+.global-nav__list,
+.global-nav__submenu {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.global-nav__list > li {
+  border-top: 1px solid var(--bs-grey-2);
+}
+
+.global-nav__split-button {
+  display: flex;
+  width: 100%;
+}
+
+.global-nav__split-button > a {
+  background-color: var(--bs-gray-800);
+  flex: 1;
+  padding: 0.85rem 1rem;
+}
+
+.global-nav__split-button > a:link,
+.global-nav__split-button > a:visited {
+  color: var(--bs-white);
+  text-decoration: none;
+}
+
+.global-nav__split-button > a:hover {
+  text-decoration: underline;
+}
+
+.global-nav__split-button__toggle {
+  background-color: var(--bs-gray-800);
+  border: none;
+  border-left: 1px solid var(--bs-grey-2);
+  color: var(--bs-white);
+  width: 52px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.global-nav__split-button__toggle:hover {
+  background-color: var(--bs-gray-900);
+}
+
+.global-nav__split-button__toggle .icon {
+  transition: transform 0.3s ease;
+}
+
+.global-nav__split-button__toggle[aria-expanded="true"] .icon {
+  transform: rotate(180deg);
+}
+
+.global-nav__submenu {
+  background-color: var(--bs-black);
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+}
+
+.global-nav__submenu.show {
+  max-height: 500px;
+}
+
+.global-nav__submenu a {
+  display: block;
+  padding: 0.65rem 1.5rem;
+}
+
+.global-nav__submenu a:link,
+.global-nav__submenu a:visited {
+  color: var(--bs-white);
+  text-decoration: none;
+}
+
+.global-nav__submenu a:hover {
+  text-decoration: underline;
 }
 
 /* Park header and hero image */
@@ -538,15 +630,53 @@ summary {
 /* Larger screen styling */
 
 @media screen and (min-width: 700px) {
-  .global-nav {
-    max-height: none;
-    overflow: visible;
-    position: static;
-    width: auto;
+  .global-nav.show {
+    max-height: 1000px;
   }
 
-  .global-nav__toggle {
+  .global-nav > .global-nav__section-heading:first-of-type,
+  .global-nav > .global-nav__list:first-of-type {
     display: none;
+  }
+
+  .global-nav__section-heading--green {
+    display: none;
+  }
+
+  .global-nav__list--nps {
+    display: flex;
+    justify-content: space-around;
+    gap: 3rem;
+    padding: 1rem 4rem;
+  }
+
+  .global-nav__list--nps > li {
+    border-top: none;
+    flex: 1;
+  }
+
+  .global-nav__split-button {
+    display: block;
+  }
+
+  .global-nav__split-button > a {
+    background-color: transparent;
+    display: block;
+    font-weight: bold;
+    padding: 0 0 0.5rem;
+  }
+
+  .global-nav__split-button__toggle {
+    display: none;
+  }
+
+  .global-nav__submenu {
+    max-height: fit-content;
+    overflow: visible;
+  }
+
+  .global-nav__submenu a {
+    padding: 0.25rem 0;
   }
 
   .hero-banner {
