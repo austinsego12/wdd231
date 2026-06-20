@@ -10,6 +10,10 @@ function toggleMainMenu(ev) {
   const button = getClickedButton(ev.target);
   const globalNav = document.querySelector(".global-nav");
 
+  if (!button || !globalNav) {
+    return;
+  }
+
   globalNav.classList.toggle("show");
 
   const isOpen = globalNav.classList.contains("show");
@@ -22,6 +26,10 @@ function toggleSubmenu(ev) {
   const button = getClickedButton(ev.target);
   const listItem = button.closest("li");
   const submenu = listItem.querySelector(".global-nav__submenu");
+
+  if (!button || !submenu) {
+    return;
+  }
 
   submenu.classList.toggle("show");
 
@@ -36,11 +44,15 @@ export function enableNavigation() {
     ".global-nav__split-button__toggle"
   );
 
-  if (menuButton) {
+  if (menuButton && !menuButton.dataset.navEnabled) {
     menuButton.addEventListener("click", toggleMainMenu);
+    menuButton.dataset.navEnabled = "true";
   }
 
   submenuButtons.forEach((button) => {
-    button.addEventListener("click", toggleSubmenu);
+    if (!button.dataset.navEnabled) {
+      button.addEventListener("click", toggleSubmenu);
+      button.dataset.navEnabled = "true";
+    }
   });
 }
