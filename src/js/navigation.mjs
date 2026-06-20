@@ -7,6 +7,8 @@ function getClickedButton(target) {
 }
 
 function toggleMainMenu(ev) {
+  console.log("menu clicked");
+
   const button = getClickedButton(ev.target);
   const globalNav = document.querySelector(".global-nav");
 
@@ -39,10 +41,14 @@ function toggleSubmenu(ev) {
 }
 
 export function enableNavigation() {
+  console.log("enableNavigation is running");
+
   const menuButton = document.querySelector("#global-nav-toggle");
   const submenuButtons = document.querySelectorAll(
     ".global-nav__split-button__toggle"
   );
+
+  console.log(menuButton);
 
   if (menuButton && !menuButton.dataset.navEnabled) {
     menuButton.addEventListener("click", toggleMainMenu);
