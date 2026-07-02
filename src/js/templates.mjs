@@ -82,3 +82,83 @@ export function activityTemplate(activity) {
     ${activity.name}
   </li>`;
 }
+
+export function listTemplate(data, contentTemplate) {
+  const html = data.map(contentTemplate);
+  return `<ul>${html.join("")}</ul>`;
+}
+
+export function vcImageTemplate(image) {
+  return `
+    <li>
+      <img src="${image.url}" alt="${image.altText || "Visitor center image"}" />
+    </li>
+  `;
+}
+
+export function vcAmenityTemplate(amenity) {
+  return `<li>${amenity}</li>`;
+}
+
+export function vcDetailsTemplate(id, iconId, summaryText, content) {
+  return `
+    <details name="vc-details" id="${id}">
+      <summary>
+        <svg class="icon" role="presentation" focusable="false">
+          <use xlink:href="${spritePath}#${iconId}"></use>
+        </svg>
+        ${summaryText}
+      </summary>
+      <div class="vc-details-content">
+        ${content}
+      </div>
+    </details>
+  `;
+}
+
+export function vcAddressTemplate(addresses) {
+  if (!addresses || addresses.length === 0) {
+    return "<p>No address information is currently available.</p>";
+  }
+
+  const html = addresses.map((address) => {
+    return `
+      <section class="vc-address">
+        <h3>${address.type || "Address"}</h3>
+        <p>
+          ${address.line1 || ""}<br />
+          ${address.line2 || ""}
+          ${address.line2 ? "<br />" : ""}
+          ${address.line3 || ""}
+          ${address.line3 ? "<br />" : ""}
+          ${address.city || ""}, ${address.stateCode || ""}
+          ${address.postalCode || ""}
+        </p>
+      </section>
+    `;
+  });
+
+  return html.join("");
+}
+
+export function vcContactTemplate(contacts) {
+  if (!contacts) {
+    return "<p>No contact information is currently available.</p>";
+  }
+
+  const phone =
+    contacts.phoneNumbers && contacts.phoneNumbers.length > 0
+      ? contacts.phoneNumbers[0].phoneNumber
+      : null;
+
+  const email =
+    contacts.emailAddresses && contacts.emailAddresses.length > 0
+      ? contacts.emailAddresses[0].emailAddress
+      : null;
+
+  return `
+    ${phone ? `<p><strong>Phone:</strong> ${phone}</p>` : ""}
+    ${email ? `<p><strong>Email:</strong> <a href="mailto:${email}">${email}</a></p>` : ""}
+    ${!phone && !email ? "<p>No contact information is currently available.</p>" : ""}
+  `;
+}

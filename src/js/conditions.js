@@ -1,17 +1,38 @@
 import "../css/style.css";
 import "../css/conditions.css";
 
-import { getParkData, getAlertsData, getVisitorCenterData } from "./parkService.mjs";
 import {
-  setHeaderFooter,
+  getParkData,
+  getAlertsData,
+  getVisitorCenterData
+} from "./parkService.mjs";
+
+import setHeaderFooter from "./setHeaderFooter.mjs";
+import { enableNavigation } from "./navigation.mjs";
+
+import {
   alertTemplate,
-  visitorCenterTemplate,
   activityTemplate
 } from "./templates.mjs";
 
 const parkCode = "yell";
 
+function visitorCenterLinkTemplate(center) {
+  return `
+    <section class="visitor-center">
+      <h3>
+        <a href="visitor-center.html?id=${encodeURIComponent(center.id)}">
+          ${center.name}
+        </a>
+      </h3>
+      <p>${center.description || "No description available."}</p>
+    </section>
+  `;
+}
+
 async function init() {
+  enableNavigation();
+
   const parkData = await getParkData(parkCode);
 
   setHeaderFooter(parkData);
@@ -37,18 +58,20 @@ async function setVisitorCenters(parkCode) {
   const centers = await getVisitorCenterData(parkCode);
 
   if (!centers || centers.length === 0) {
-    visitorCentersList.innerHTML = "<p>No visitor center information is available.</p>";
+    visitorCentersList.innerHTML =
+      "<p>No visitor center information is available.</p>";
     return;
   }
 
-  visitorCentersList.innerHTML = centers.map(visitorCenterTemplate).join("");
+  visitorCentersList.innerHTML = centers.map(visitorCenterLinkTemplate).join("");
 }
 
 function setActivities(activities) {
   const activitiesList = document.querySelector("#activities-list");
 
   if (!activities || activities.length === 0) {
-    activitiesList.innerHTML = "<p>No activities are currently listed for this park.</p>";
+    activitiesList.innerHTML =
+      "<p>No activities are currently listed for this park.</p>";
     return;
   }
 

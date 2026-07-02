@@ -28,9 +28,20 @@ export async function getAlertsData(parkCode) {
   return alertData.data;
 }
 
-export async function getVisitorCenterData(parkCode) {
-  const visitorCenterData = await getJson(`visitorcenters?parkCode=${parkCode}`);
-  return visitorCenterData.data;
+export async function getParkVisitorCenterDetails(id) {
+  const visitorCenterData = await getJson(
+    `visitorcenters?id=${encodeURIComponent(id)}`
+  );
+
+  return visitorCenterData.data[0];
+}
+
+export async function getParkVisitorCenterDetails(id) {
+  const visitorCenterData = await getJson(
+    `visitorcenters?id=${encodeURIComponent(id)}`
+  );
+
+  return visitorCenterData.data[0];
 }
 
 export function getInfoLinks(images) {
