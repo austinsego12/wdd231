@@ -13,13 +13,13 @@ async function getJson(url) {
 
   if (response.ok) {
     return await response.json();
-  } else {
-    throw new Error("response not ok");
   }
+
+  throw new Error("response not ok");
 }
 
-export async function getParkData() {
-  const parkData = await getJson("parks?parkCode=yell");
+export async function getParkData(parkCode = "yell") {
+  const parkData = await getJson(`parks?parkCode=${parkCode}`);
   return parkData.data[0];
 }
 
@@ -28,12 +28,9 @@ export async function getAlertsData(parkCode) {
   return alertData.data;
 }
 
-export async function getParkVisitorCenterDetails(id) {
-  const visitorCenterData = await getJson(
-    `visitorcenters?id=${encodeURIComponent(id)}`
-  );
-
-  return visitorCenterData.data[0];
+export async function getVisitorCenterData(parkCode) {
+  const visitorCenterData = await getJson(`visitorcenters?parkCode=${parkCode}`);
+  return visitorCenterData.data;
 }
 
 export async function getParkVisitorCenterDetails(id) {
